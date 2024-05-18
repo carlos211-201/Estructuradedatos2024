@@ -1,0 +1,856 @@
+/*/1
+using System;
+
+class Program
+{
+    static void Main()
+    {>
+        int filas = 100;
+        int columnas = 100;
+        int[,] matrizAleatoria = new int[filas, columnas];
+
+        Random random = new Random();
+
+        // Llenar la matriz con números aleatorios
+        for (int i = 0; i < filas; i++)
+        {
+            for (int j = 0; j < columnas; j++)
+            {
+                matrizAleatoria[i, j] = random.Next(1, 101);
+            }
+        }
+        // Mostrar la matriz en la consola
+        ImprimirMatriz(matrizAleatoria);
+    }
+
+    static void ImprimirMatriz(int[,] matriz)
+    {
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            for (int j = 0; j < matriz.GetLength(1); j++)
+            {
+                Console.Write(matriz[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+/*/
+/*/2
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de palabras de ejemplo
+        HashSet<string> palabras = new HashSet<string>()
+        {
+            "manzana",
+            "banana",
+            "pera",
+            "naranja",
+            "sandía"
+        };
+
+        // Letra determinada
+        char letra = 'm';
+
+        // Obtener el conjunto de palabras que comienzan con la letra determinada
+        HashSet<string> palabrasConLetra = ObtenerPalabrasConLetra(palabras, letra);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Palabras que comienzan con la letra '{0}':", letra);
+        foreach (string palabra in palabrasConLetra)
+        {
+            Console.WriteLine(palabra);
+        }
+    }
+
+    static HashSet<string> ObtenerPalabrasConLetra(HashSet<string> palabras, char letra)
+    {
+        HashSet<string> palabrasConLetra = new HashSet<string>();
+
+        foreach (string palabra in palabras)
+        {
+            if (palabra.StartsWith(letra.ToString(), StringComparison.OrdinalIgnoreCase))
+            {
+                palabrasConLetra.Add(palabra);
+            }
+        }
+
+        return palabrasConLetra;
+    }
+}
+/*/
+/*/ 3
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de números de ejemplo
+        HashSet<int> numeros = new HashSet<int>() { 10, 15, 20, 25, 30, 35, 40 };
+
+        // Número determinado para comprobar la divisibilidad
+        int divisor = 5;
+
+        // Obtener el conjunto de números divisibles por el número determinado
+        HashSet<int> numerosDivisibles = ObtenerNumerosDivisibles(numeros, divisor);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Números divisibles por {0}:", divisor);
+        foreach (int numero in numerosDivisibles)
+        {
+            Console.WriteLine(numero);
+        }
+    }
+
+    static HashSet<int> ObtenerNumerosDivisibles(HashSet<int> numeros, int divisor)
+    {
+        HashSet<int> numerosDivisibles = new HashSet<int>();
+
+        foreach (int numero in numeros)
+        {
+            if (numero % divisor == 0)
+            {
+                numerosDivisibles.Add(numero);
+            }
+        }
+
+        return numerosDivisibles;
+    }
+}
+
+
+/*/
+/*/4
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+ 
+        HashSet<int> conjunto1 = new HashSet<int>() { 1, 2, 3, 4, 5 };
+        HashSet<int> conjunto2 = new HashSet<int>() { 3, 4, 5, 6, 7 };
+
+        HashSet<int> numerosComunes = ObtenerNumerosComunes(conjunto1, conjunto2);
+
+        Console.WriteLine("Números comunes en ambos conjuntos:");
+        foreach (int numero in numerosComunes)
+        {
+            Console.WriteLine(numero);
+        }
+    }
+
+    static HashSet<int> ObtenerNumerosComunes(HashSet<int> conjunto1, HashSet<int> conjunto2)
+    {
+        HashSet<int> numerosComunes = new HashSet<int>(conjunto1);
+
+        // Retener solo los números que están en ambos conjuntos
+        numerosComunes.IntersectWith(conjunto2);
+
+        return numerosComunes;
+    }
+}
+/*/
+/*/5
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        HashSet<int> conjunto1 = new HashSet<int>() { 1, 2, 3, 4, 5 };
+        HashSet<int> conjunto2 = new HashSet<int>() { 3, 4, 5, 6, 7 };
+
+
+        HashSet<int> numerosDiferentes = ObtenerNumerosDiferentes(conjunto1, conjunto2);
+
+        Console.WriteLine("Números en el primer conjunto pero no en el segundo:");
+        foreach (int numero in numerosDiferentes)
+        {
+            Console.WriteLine(numero);
+        }
+    }
+
+    static HashSet<int> ObtenerNumerosDiferentes(HashSet<int> conjunto1, HashSet<int> conjunto2)
+    {
+        HashSet<int> numerosDiferentes = new HashSet<int>(conjunto1);
+
+        numerosDiferentes.ExceptWith(conjunto2);
+
+        return numerosDiferentes;
+    }
+}
+
+/*/
+
+/*/6
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+    
+        HashSet<int> conjunto1 = new HashSet<int>() { 1, 2, 3, 4, 5 };
+        HashSet<int> conjunto2 = new HashSet<int>() { 3, 4, 5, 6, 7 };
+
+ 
+        HashSet<int> numerosDiferentes = ObtenerNumerosDiferentes(conjunto2, conjunto1);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Números en el segundo conjunto pero no en el primero:");
+        foreach (int numero in numerosDiferentes)
+        {
+            Console.WriteLine(numero);
+        }
+    }
+
+    static HashSet<int> ObtenerNumerosDiferentes(HashSet<int> conjunto1, HashSet<int> conjunto2)
+    {
+        HashSet<int> numerosDiferentes = new HashSet<int>(conjunto2);
+
+   
+        numerosDiferentes.ExceptWith(conjunto1);
+
+        return numerosDiferentes;
+    }
+}
+
+
+/*/
+/*/7
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        
+        HashSet<string> palabras = new HashSet<string>() { "roma", "amor", "perro", "roper" };
+
+        HashSet<string> anagramas = ObtenerAnagramas(palabras);
+
+   
+        Console.WriteLine("Palabras que son anagramas:");
+        foreach (string palabra in anagramas)
+        {
+            Console.WriteLine(palabra);
+        }
+    }
+
+    static HashSet<string> ObtenerAnagramas(HashSet<string> palabras)
+    {
+        HashSet<string> anagramas = new HashSet<string>();
+
+       
+        var gruposAnagramas = palabras.GroupBy(palabra => new string(palabra.OrderBy(c => c).ToArray()));
+
+        // Filtrar los grupos que tengan más de una palabra (anagramas)
+        foreach (var grupo in gruposAnagramas)
+        {
+            if (grupo.Count() > 1)
+            {
+                anagramas.UnionWith(grupo);
+            }
+        }
+
+        return anagramas;
+    }
+}
+/*/
+
+/*/8
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de palabras de ejemplo
+        HashSet<string> palabras = new HashSet<string>() { "oso", "reconocer", "radar", "casa" };
+
+        // Obtener el conjunto de palabras que son palíndromos
+        HashSet<string> palindromos = ObtenerPalindromos(palabras);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Palabras que son palíndromos:");
+        foreach (string palabra in palindromos)
+        {
+            Console.WriteLine(palabra);
+        }
+    }
+
+    static HashSet<string> ObtenerPalindromos(HashSet<string> palabras)
+    {
+        HashSet<string> palindromos = new HashSet<string>();
+
+        foreach (string palabra in palabras)
+        {
+            if (EsPalindromo(palabra))
+            {
+                palindromos.Add(palabra);
+            }
+        }
+
+        return palindromos;
+    }
+
+    static bool EsPalindromo(string palabra)
+    {
+        int i = 0;
+        int j = palabra.Length - 1;
+
+        while (i < j)
+        {
+            if (palabra[i] != palabra[j])
+            {
+                return false;
+            }
+            i++;
+            j--;
+        }
+
+        return true;
+    }
+}
+/*/
+/*/9
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+   
+        HashSet<string> palabras = new HashSet<string>() { "casa", "perro", "gato", "oso", "arbol" };
+
+        int longitud = 4;
+
+      
+        HashSet<string> palabrasLongitud = ObtenerPalabrasLongitud(palabras, longitud);
+
+
+        Console.WriteLine("Palabras con longitud {0}:", longitud);
+        foreach (string palabra in palabrasLongitud)
+        {
+            Console.WriteLine(palabra);
+        }
+    }
+
+    static HashSet<string> ObtenerPalabrasLongitud(HashSet<string> palabras, int longitud)
+    {
+        HashSet<string> palabrasLongitud = new HashSet<string>();
+
+        foreach (string palabra in palabras)
+        {
+            if (palabra.Length == longitud)
+            {
+                palabrasLongitud.Add(palabra);
+            }
+        }
+
+        return palabrasLongitud;
+    }
+}
+
+
+/*/
+
+/*/10
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de palabras de ejemplo
+        HashSet<string> palabras = new HashSet<string>() { "casa", "perro", "gato", "oso", "arbol" };
+
+        // Letra determinada a buscar en las palabras
+        char letra = 'o';
+
+        // Obtener el conjunto de palabras que contienen la letra determinada
+        HashSet<string> palabrasConLetra = ObtenerPalabrasConLetra(palabras, letra);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Palabras que contienen la letra '{0}':", letra);
+        foreach (string palabra in palabrasConLetra)
+        {
+            Console.WriteLine(palabra);
+        }
+    }
+
+    static HashSet<string> ObtenerPalabrasConLetra(HashSet<string> palabras, char letra)
+    {
+        HashSet<string> palabrasConLetra = new HashSet<string>();
+
+        foreach (string palabra in palabras)
+        {
+            if (palabra.Contains(letra))
+            {
+                palabrasConLetra.Add(palabra);
+            }
+        }
+
+        return palabrasConLetra;
+    }
+}
+/*/
+/*/11
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de números de ejemplo
+        HashSet<int> numeros = new HashSet<int>() { 5, 2, 8, 1, 10, 3 };
+
+        // Obtener el conjunto de números ordenados de menor a mayor
+        HashSet<int> numerosOrdenados = ObtenerNumerosOrdenados(numeros);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Números ordenados de menor a mayor:");
+        foreach (int numero in numerosOrdenados)
+        {
+            Console.WriteLine(numero);
+        }
+    }
+
+    static HashSet<int> ObtenerNumerosOrdenados(HashSet<int> numeros)
+    {
+        HashSet<int> numerosOrdenados = new HashSet<int>(numeros.OrderBy(numero => numero));
+        return numerosOrdenados;
+    }
+}
+/*/
+
+
+/*/ 12
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de números de ejemplo
+        HashSet<int> numeros = new HashSet<int>() { 5, 2, 8, 1, 10, 3 };
+
+        // Obtener el conjunto de números ordenados de mayor a menor
+        HashSet<int> numerosOrdenados = ObtenerNumerosOrdenados(numeros);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Números ordenados de mayor a menor:");
+        foreach (int numero in numerosOrdenados)
+        {
+            Console.WriteLine(numero);
+        }
+    }
+
+    static HashSet<int> ObtenerNumerosOrdenados(HashSet<int> numeros)
+    {
+        HashSet<int> numerosOrdenados = new HashSet<int>(numeros.OrderByDescending(numero => numero));
+        return numerosOrdenados;
+    }
+}
+/*/
+/*/13
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de números de ejemplo
+        HashSet<int> numeros = new HashSet<int>() { 5, 2, 8, 1, 5, 3, 8, 2 };
+
+        // Obtener el conjunto de números duplicados
+        HashSet<int> numerosDuplicados = ObtenerNumerosDuplicados(numeros);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Números duplicados:");
+        foreach (int numero in numerosDuplicados)
+        {
+            Console.WriteLine(numero);
+        }
+    }
+
+    static HashSet<int> ObtenerNumerosDuplicados(HashSet<int> numeros)
+    {
+        HashSet<int> numerosDuplicados = new HashSet<int>();
+        HashSet<int> numerosUnicos = new HashSet<int>();
+
+        foreach (int numero in numeros)
+        {
+            if (!numerosUnicos.Add(numero))
+            {
+                numerosDuplicados.Add(numero);
+            }
+        }
+
+        return numerosDuplicados;
+    }
+}
+/*/
+
+/*/14
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de números de ejemplo
+        HashSet<int> numeros = new HashSet<int>() { 5, 2, 8, 1, 5, 3, 8, 2, 10 };
+
+        // Obtener el conjunto de números no duplicados
+        HashSet<int> numerosNoDuplicados = ObtenerNumerosNoDuplicados(numeros);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Números no duplicados:");
+        foreach (int numero in numerosNoDuplicados)
+        {
+            Console.WriteLine(numero);
+        }
+    }
+
+    static HashSet<int> ObtenerNumerosNoDuplicados(HashSet<int> numeros)
+    {
+        HashSet<int> numerosNoDuplicados = new HashSet<int>();
+        HashSet<int> numerosDuplicados = new HashSet<int>();
+
+        foreach (int numero in numeros)
+        {
+            if (!numerosDuplicados.Contains(numero))
+            {
+                if (!numerosNoDuplicados.Contains(numero))
+                {
+                    numerosNoDuplicados.Add(numero);
+                }
+                else
+                {
+                    numerosNoDuplicados.Remove(numero);
+                    numerosDuplicados.Add(numero);
+                }
+            }
+        }
+
+        return numerosNoDuplicados;
+    }
+}
+/*/
+/*/15
+
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de números de ejemplo
+        HashSet<int> numeros = new HashSet<int>() { 5, 12, 3, 7, 10, 11, 4 };
+
+        // Obtener el conjunto de números primos ordenados de menor a mayor
+        HashSet<int> numerosPrimosOrdenados = ObtenerNumerosPrimosOrdenados(numeros);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Números primos ordenados de menor a mayor:");
+        foreach (int numero in numerosPrimosOrdenados)
+        {
+            Console.WriteLine(numero);
+        }
+    }
+
+    static HashSet<int> ObtenerNumerosPrimosOrdenados(HashSet<int> numeros)
+    {
+        HashSet<int> numerosPrimos = new HashSet<int>();
+
+        foreach (int numero in numeros)
+        {
+            if (EsPrimo(numero))
+            {
+                numerosPrimos.Add(numero);
+            }
+        }
+
+        List<int> numerosPrimosOrdenados = new List<int>(numerosPrimos);
+        numerosPrimosOrdenados.Sort();
+
+        return new HashSet<int>(numerosPrimosOrdenados);
+    }
+
+    static bool EsPrimo(int numero)
+    {
+        if (numero <= 1)
+        {
+            return false;
+        }
+
+        for (int i = 2; i <= Math.Sqrt(numero); i++)
+        {
+            if (numero % i == 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+/*/
+/*/16
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de palabras de ejemplo
+        HashSet<string> palabras = new HashSet<string>() { "oso", "reconocer", "radar", "casa", "ana" };
+
+        // Obtener el conjunto de palabras palíndromas ordenadas de menor a mayor
+        HashSet<string> palabrasPalindromasOrdenadas = ObtenerPalabrasPalindromasOrdenadas(palabras);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Palabras palíndromas ordenadas de menor a mayor:");
+        foreach (string palabra in palabrasPalindromasOrdenadas)
+        {
+            Console.WriteLine(palabra);
+        }
+    }
+
+    static HashSet<string> ObtenerPalabrasPalindromasOrdenadas(HashSet<string> palabras)
+    {
+        HashSet<string> palabrasPalindromas = new HashSet<string>();
+
+        foreach (string palabra in palabras)
+        {
+            if (EsPalindromo(palabra))
+            {
+                palabrasPalindromas.Add(palabra);
+            }
+        }
+
+        List<string> palabrasPalindromasOrdenadas = new List<string>(palabrasPalindromas);
+        palabrasPalindromasOrdenadas.Sort();
+
+        return new HashSet<string>(palabrasPalindromasOrdenadas);
+    }
+
+    static bool EsPalindromo(string palabra)
+    {
+        int i = 0;
+        int j = palabra.Length - 1;
+
+        while (i < j)
+        {
+            if (palabra[i] != palabra[j])
+            {
+                return false;
+            }
+            i++;
+            j--;
+        }
+
+        return true;
+    }
+}
+/*/
+/*/17
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de palabras de ejemplo
+        HashSet<string> palabras = new HashSet<string>() { "casa", "perro", "gato", "oso", "arbol" };
+
+        // Longitud determinada de las palabras a buscar
+        int longitud = 4;
+
+        // Obtener el conjunto de palabras con la longitud determinada y ordenadas de menor a mayor
+        HashSet<string> palabrasLongitudOrdenadas = ObtenerPalabrasLongitudOrdenadas(palabras, longitud);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Palabras con longitud {0} ordenadas de menor a mayor:", longitud);
+        foreach (string palabra in palabrasLongitudOrdenadas)
+        {
+            Console.WriteLine(palabra);
+        }
+    }
+
+    static HashSet<string> ObtenerPalabrasLongitudOrdenadas(HashSet<string> palabras, int longitud)
+    {
+        HashSet<string> palabrasFiltradas = new HashSet<string>(palabras.Where(palabra => palabra.Length == longitud));
+        List<string> palabrasOrdenadas = new List<string>(palabrasFiltradas);
+        palabrasOrdenadas.Sort();
+
+        return new HashSet<string>(palabrasOrdenadas);
+    }
+}
+/*/
+/*/18
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de palabras de ejemplo
+        HashSet<string> palabras = new HashSet<string>() { "casa", "perro", "gato", "oso", "arbol" };
+
+        // Letra determinada a buscar en las palabras
+        char letra = 'o';
+
+        // Obtener el conjunto de palabras con la letra determinada y ordenadas de mayor a menor
+        HashSet<string> palabrasConLetraOrdenadas = ObtenerPalabrasConLetraOrdenadas(palabras, letra);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Palabras que contienen la letra '{0}' ordenadas de mayor a menor:", letra);
+        foreach (string palabra in palabrasConLetraOrdenadas)
+        {
+            Console.WriteLine(palabra);
+        }
+    }
+
+    static HashSet<string> ObtenerPalabrasConLetraOrdenadas(HashSet<string> palabras, char letra)
+    {
+        HashSet<string> palabrasConLetra = new HashSet<string>();
+
+        foreach (string palabra in palabras)
+        {
+            if (palabra.Contains(letra))
+            {
+                palabrasConLetra.Add(palabra);
+            }
+        }
+
+        List<string> palabrasOrdenadas = new List<string>(palabrasConLetra);
+        palabrasOrdenadas.Sort();
+        palabrasOrdenadas.Reverse();
+
+        return new HashSet<string>(palabrasOrdenadas);
+    }
+}
+/*/
+/*/19
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de números de ejemplo
+        HashSet<int> numeros = new HashSet<int>() { 5, 2, 8, 1, 5, 3, 8, 2, 10 };
+
+        // Obtener el conjunto de números ordenados de menor a mayor y no duplicados
+        HashSet<int> numerosOrdenadosNoDuplicados = ObtenerNumerosOrdenadosNoDuplicados(numeros);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Números ordenados de menor a mayor y no duplicados:");
+        foreach (int numero in numerosOrdenadosNoDuplicados)
+        {
+            Console.WriteLine(numero);
+        }
+    }
+
+    static HashSet<int> ObtenerNumerosOrdenadosNoDuplicados(HashSet<int> numeros)
+    {
+        List<int> numerosOrdenados = new List<int>(numeros);
+        numerosOrdenados.Sort();
+        HashSet<int> numerosNoDuplicados = new HashSet<int>(numerosOrdenados);
+
+        return numerosNoDuplicados;
+    }
+}
+/*/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        // Conjunto de palabras de ejemplo
+        HashSet<string> palabras = new HashSet<string>() { "oso", "reconocer", "radar", "casa", "ana" };
+
+        // Longitud determinada de las palabras a buscar
+        int longitud = 3;
+
+        // Obtener el conjunto de palabras palíndromos con longitud determinada y ordenadas de menor a mayor
+        HashSet<string> palabrasPalindromosLongitudOrdenadas = ObtenerPalindromosLongitudOrdenadas(palabras, longitud);
+
+        // Mostrar el resultado en la consola
+        Console.WriteLine("Palíndromos con longitud {0} ordenados de menor a mayor:", longitud);
+        foreach (string palabra in palabrasPalindromosLongitudOrdenadas)
+        {
+            Console.WriteLine(palabra);
+        }
+    }
+
+    static HashSet<string> ObtenerPalindromosLongitudOrdenadas(HashSet<string> palabras, int longitud)
+    {
+        HashSet<string> palabrasFiltradas = new HashSet<string>(palabras.Where(palabra => EsPalindromo(palabra) && palabra.Length == longitud));
+        List<string> palabrasOrdenadas = new List<string>(palabrasFiltradas);
+        palabrasOrdenadas.Sort();
+
+        return new HashSet<string>(palabrasOrdenadas);
+    }
+
+    static bool EsPalindromo(string palabra)
+    {
+        int i = 0;
+        int j = palabra.Length - 1;
+
+        while (i < j)
+        {
+            if (palabra[i] != palabra[j])
+            {
+                return false;
+            }
+            i++;
+            j--;
+        }
+
+        return true;
+    }
+}
